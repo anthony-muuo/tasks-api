@@ -6,6 +6,10 @@ app.use(express.json());
 
 const client = new PrismaClient();
 
+app.get("/", (_req, res) => {
+  res.send("Welcome to the Tasks Api endpoint");
+});
+
 app.get("/tasks", async (_req, res) => {
   try {
     const allTasks = await client.tasks.findMany({
