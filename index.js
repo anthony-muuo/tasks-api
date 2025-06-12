@@ -65,10 +65,10 @@ app.patch("/tasks/:id/delete", async (req, res) => {
   try {
     const { id } = req.params;
     const removed = await client.tasks.update({
-      where: { id },
+      where: { id: +id },
       data: { isDeleted: true },
     });
-    res.send(200).json(removed);
+    res.status(200).json(removed);
   } catch (error) {
     res.status(500).json("failed to update this specific task");
   }
